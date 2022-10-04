@@ -1,6 +1,7 @@
 <?php
-
-class Animal{
+require_once("interfaces.php");
+class Animal implements AliveAnimal{
+    
     public $name;
     public $age;
     public $movement="forward";
@@ -8,28 +9,32 @@ class Animal{
     public $vertebrates; //boolean
     public $type; //mamal, insect
 
-    public function __construct(string $name,int $age,bool $vertebrates, string $type) //constructor
+    public function __construct(string $name,int $age, string $type) //constructor
     {
         // when we create a constructor we can add arguments and then initialize the properties with those argument values
         $this->name=$name;
         $this->age = $age;
-         //$this->movement;
-        $this->vertebrates = $vertebrates;
         $this->type=$type;
+        $this->movement="forward";
         echo "+ " . $this->name . " CREATED +<br>";
-
-
     }/*
     function __destruct() //destroys object
     {
         echo "- DESTROYED : " . $this->name . " type of " . $this->type . " age <br>";
     }*/
-    function move(string $mov){
-       $this->movement=$mov;
-       return "I am moving: ".$this->movement."<br>";
+    
+    public function breath():string{
+        return "I am moving: ".$this->movement."<br>";
+
     }
-    function breath(){
+    public function move():string{
         return "I am breathing<br>";
+            
     }
+    
+    function sound(){
+        return "default sound";
+    }
+ 
 
 }
